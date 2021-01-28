@@ -1,0 +1,121 @@
+/* The scss file for the styling of the friendships page. 
+ * The colours partial has been imported from the modules folder so that the colour variables 
+ * can be used within this file. 
+*/
+@import "modules/colours";
+
+.friends-titles {
+  text-align: center;
+  font-weight: 700;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.friendships-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  .current-friends {
+    animation: fade 2s;
+    padding: 20px 5%;
+  }
+
+  .friended-by {
+    animation: fade 4s;
+    padding: 20px 5%;
+  }
+
+  .all-users {
+    animation: fade 6s;
+    padding: 20px 5%;
+  }
+
+  .friend-card {
+    min-width: 400px;
+    height: auto;
+    padding: 1.1rem;
+    margin: 0 30px 2rem 30px;
+    border-top: solid rgba(0, 0, 0, 0.03) 1px;
+    border-radius: 5px;
+    box-shadow: 0px 15px 15px -10px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: row;
+
+    .friend-avatar {
+      margin-right: 10px;
+    }
+
+    .friend-name {
+      line-height: 20px;
+
+      h3 {
+        font-weight: 700;
+        font-size: 16px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+
+      a {
+        font-size: 12px;
+        text-decoration: underline;
+        color: $primary;
+        transition: color;
+        transition-duration: 250ms;
+      }
+
+      a:hover {
+        color: $dark_grey;
+      }
+    }
+
+    .already-friends h3 {
+      padding: 10px 4px;
+      font-size: 14px;
+    }
+
+    .fa-user-friends {
+      padding-right: 5px;
+    }
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+table {
+  width: 100%;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+td,
+th {
+  border: 1px solid black;
+  width: 20vw;
+
+  @media (max-width: 375px) {
+    width: 100vw;
+  }
+}
+
+// .container-center {
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+// }

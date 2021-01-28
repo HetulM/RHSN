@@ -1,0 +1,78 @@
+---
+en:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            current_password:
+              invalid: \nPassword is invalid!
+              blank: Field cannot be left blank!
+  devise:
+    sessions:
+      new:
+        title: Sign In...
+        email_placeholder: Enter your email
+        password_placeholder: Enter your password
+  didn't_recieve_confirmation_instructions: Didn't Receive Unlock Instructions?
+  email: Email
+  forgot_password: Forgot Your Password?
+  friendships:
+    index:
+      add_friend: __Follow__
+      following_title: Following
+      follows_you_title: Follows You
+      all_users_title: All Users
+  login: Log In
+  logout: Logout
+  name: Name
+  password: Password
+  password_confirmation: Password Confirmation
+  placeholder: Create a new post...
+  posts:
+    people-you-may-know:
+      add_friend: __Follow__
+      title: People You May Know
+    profile:
+      edit_profile: Edit Profile
+      followers: Followers
+      following: Following
+      marketplace: Marketplace
+      messages: Messages
+      friendships: Friends
+      posts: Posts
+      title: Profile
+    feed:
+      show_thread: Show Thread
+    edit: 
+      edit_post_title: Edit Posts
+      show_link: Show
+      back_link: Back
+  rooms:
+    show: 
+      chat_room_title: Chat Room
+      top_bar_heading: General
+      message_form_placeholder: Type-your-message-here...
+  remember_me: Remember Me
+  sign_in: Sign In
+  sign_up: Sign Up
+  confirm_sign_up: Confirm Sign Up
+  greeting: Hello
+  greeting_two: What's Happening?
+  update: 👇 Made A Mistake? Haha... Don't Worry, It Happens! 👇
+  form_update: Update Post
+  username: Username
+  comment: Comment
+  like: Like
+  unike: Unlike
+  form_submit: Create Post
+  category: Categories
+  edit: Edit
+  back: Back
+  comment_placeholder: Type a comment...
+  comment_button: Comment
+  delete: Delete
+  delete_confirmation: Are you sure?
+  edit: Edit
+  avatar: Avatar
+  admin_link: Admin Panel

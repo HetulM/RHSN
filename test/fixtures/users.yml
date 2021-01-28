@@ -1,0 +1,22 @@
+# Contains the fixtures for users.
+
+visitor:
+  id: 1
+  name: Tester
+  username: Test
+  email: test@example.org
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+
+friend:
+  id: 2
+  name: Friend
+  username: friend
+  email: friend@example.org
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+
+invalid:
+  id: 3
+  name:
+  username:
+  email: invalid@example.org
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>

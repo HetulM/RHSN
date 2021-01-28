@@ -1,0 +1,22 @@
+<%# The partial for the messages which are shown in the chat room. %>
+
+<div class="user-message">
+  <%# Display the avatar for the user who messaged. %>
+  <span class="message-avatar">
+    <%= avatar_for(message.user, size: 60) %>
+  </span>
+
+  <div class="message-item">
+    <%# Displays the name of the user who sent the message. %>
+    <p class="message-username"><%= message.user.name %></p>
+    <span class="message-timestamp">
+      <%= message.created_at %>
+    </span>
+    <span class="message-star"></span>
+    <span class="message-content">
+      <%# Displays the message contents. %>
+      <%= message.content %>
+    </span>
+  </div>
+</div>
+ 

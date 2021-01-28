@@ -1,0 +1,4 @@
+<%# Using jquery to reload the comments without a refresh %>
+$('#comment_section').prepend("<%= j render @comment %>");
+<%# Clears the content within the comment box after you submit the comment %>
+$('#comment_body').val('');

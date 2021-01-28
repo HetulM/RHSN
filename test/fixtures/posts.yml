@@ -1,0 +1,6 @@
+# Contains the fixtures for posts.
+
+one:
+  id: 1
+  post: MyText
+  user_id: 1

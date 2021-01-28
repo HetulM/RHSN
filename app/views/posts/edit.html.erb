@@ -1,0 +1,16 @@
+<%# The view for the edit posts page. %>
+
+<%# This appends to the title of the page. %>
+<% content_for :title, " - Edit Post" %>
+
+<%# Renders the form partial to edit a post  %>
+<div class="columns is-centered is-mobile">
+  <div class="column is-half">
+    <h1><%= t(".edit_post_title") %></h1>
+
+    <%= render 'form', post: @post %>
+
+    <%= link_to t(".show_link"), @post %> |
+    <%= link_to t(".back_link"), posts_path %>
+  </div>
+</div>

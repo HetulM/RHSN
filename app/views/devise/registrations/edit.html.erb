@@ -1,0 +1,87 @@
+<% content_for :title, " - Account Settings" %>
+
+<!-- This file contains the form which allows you to edit your account, I have style the form using Bulma -->
+<%# The view for the edit account page which allows the user to edit their account details. %>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-4">
+
+        <h1 class="title is-3"><%= t('edit') %> <%= resource_name.to_s.humanize %></h1>
+
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
+          <%= f.error_notification %>
+
+          <%# Allows the user to upload an avatar %>
+          <div class="field">
+            <div class="control">
+              <h2 class="title is-5"><%= t('avatar') %></h2>
+              <p class="center"><%= avatar_for(current_user, size: 200) %></p>
+              <%= f.file_field :avatar, label_html: { class: "label" } %>
+              <%= f.hidden_field :avatar_cache %>
+            </div>
+          </div>
+
+          <%# Allows the user to edit their name %>
+          <div class="field">
+            <div class="control">
+              <%= f.input :name, required: true, autofocus: true, input_html: { class: "input" }, wrapper: false, label_html: { class: "label" } %>
+            </div>
+          </div>
+
+          <%# Allows the user to edit their username %>
+          <div class="field">
+            <div class="control">
+              <%= f.input :username, required: true, input_html: { class: "input" }, wrapper: false, label_html: { class: "label" } %>
+            </div>
+          </div>
+
+          <%# Allows the user to edit their email %>
+          <div class="field">
+            <div class="control">
+              <%= f.input :email, required: true, input_html: { class: "input" }, wrapper: false, label_html: { class: "label" } %>
+            </div>
+          </div>
+
+          <div class="field">
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+            <% end %>
+          </div>
+
+           <%# Allows the user to edit their password %>
+          <div class="field">
+            <div class="control">
+              <%= f.input :password, hint: "leave it blank if you don't want to change it", required: false, input_html: { class: "input" }, wrapper: false, label_html: { class: "label" }  %>
+            </div>
+          </div>
+
+           <%# The field where the user must confirm their password if they decided to change it %>
+          <div class="field">
+            <div class="control">
+              <%= f.input :password_confirmation, required: false, input_html: { class: "input" }, wrapper: false, label_html: { class: "label" } %>
+            </div>
+          </div>
+
+          <%# Field to enter your current password, this must be entered to edit any of your account details %>
+          <div class="field">
+            <div class="control">
+              <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true, input_html: { class: "input" }, wrapper: false, label_html: { class: "label" } %>
+            </div>
+          </div>
+
+          <%# Button to update their account details %>
+          <%= f.button :submit, "Update", class: "post-btn" %>
+        <% end %>
+        <hr>
+        
+        <%# This section allows the user to delete their account %>
+        <h3 class="title is-5">Cancel my account</h3>
+
+        <p>Unhappy? <br> <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+      </div>
+    </div>
+  </div>
+</section>

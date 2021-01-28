@@ -1,0 +1,33 @@
+<%# The view for the rooms show page. %>
+
+<%# This appends to the title of the page. %>
+<% content_for :title, " - Chatroom" %>
+
+<%# Displays the chat room. %>
+<div class="chatroom-container">
+  <div id="chat-container">
+    <div id="side-bar">
+      <div class="room-header">
+        <p><%= t(".chat_room_title") %></p>
+      </div>
+      <div class="room-name">
+        <p>#<%= t(".top_bar_heading") %></p>
+      </div>
+    </div>
+
+    <div id="chat-window">
+      <div class="top-bar">
+        <p>#<%= t(".top_bar_heading") %></p>
+      </div>
+      <div class="message-history" id="messages">
+        <%# Renders the messages which have been sent by users. %>
+        <%= render @messages %>
+      </div>
+      <div class="input-field">
+        <%# Creates the input field for a user to input a message. %>
+        <input type="text" class="input-text" id="message_input" placeholder=<%= t(".message_form_placeholder") %> />
+      </div>
+    </div>
+
+  </div>
+</div>

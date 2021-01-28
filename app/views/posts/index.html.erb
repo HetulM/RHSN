@@ -1,0 +1,30 @@
+<%# The view for the posts index page. %>
+
+<%# This appends to the title of the page, if a user is signed in. %>
+<% if current_user %>
+  <% content_for :title, " - " + current_user.name %>
+<% end %>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+
+    <%# If the user is signed in, render the "profile" section. %>
+    <% if user_signed_in? %>
+      <div class="column is-4">
+        <%= render 'profile' %>
+      </div>
+    <% end %>
+
+    <%= render 'feed' %>
+
+    <%# If the user is signed in, render the "people you may know" section. %>
+    <% if user_signed_in? %>
+      <div class="column is-4">
+        <%= render 'people-you-may-know' %>
+      </div>
+    <% end %>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,72 @@
+<%# The view for the show page for posts. %>
+
+<div class="container-show">
+  <%# If the user signed in created the post, display the form to edit the post. %>
+  <% if user_signed_in? && current_user.id == @post.user_id %>
+    <div class="columns update-form">
+      <%= render 'edit-form', post: @post %>
+    </div>
+  <% end %>
+
+  <%# Displays the comments which have been created on a post. %>
+  <div class="comments">
+    <div class="box post-panel">
+      <article class="media">
+        <div class="media-left">
+          <figure class="image">
+            <%= avatar_for(@post.user) %>
+          </figure>
+        </div>
+        <div class="media-content">
+          <div class="content">
+            <strong><%= @post.user.try(:name) %></strong><br />
+            <small>@<%= @post.user.try(:username) %></small>
+            <p><%= @post.post %></p>
+          </div>
+
+          <div class="right">
+            <% not_liked = @post.likes.find { |like| like.try(:user_id) == current_user.try(:id)} %>
+            <% if not_liked %>
+              <%= link_to post_like_path(@post, not_liked), method: :delete, class: 'unlike-icon' do %>
+                <i class="fas fa-thumbs-up"></i><%= t("unlike") %>
+              <% end %>
+            <% else %>
+              <%= link_to post_likes_path(@post), method: :post, class: 'like-icon' do %>
+                <i class="far fa-thumbs-up"></i><%= t("like") %>
+              <% end %>
+            <% end %>
+            <span class="likes-breakpoint">|</span>
+            <p><%= pluralize(@post.likes.count, t("like")) %></p>
+          </div>
+        </article>
+      </div>
+    
+      <div class="center">
+        <%= link_to t('back'), posts_path %>
+      </div>
+
+      <%# If a user is signed in, display the comments form and comments on a post, else display a link to 
+          sign-in. %>
+      <% if current_user %>
+        <%# Displays the form to create a comment. %>
+        <div class="box form-panel">
+          <%= form_with model: [@post, @comment] do |f| %>
+            <%= f.text_field :body, autofocus: true, autocomplete: "off", class: "text-field", placeholder: t('comment_placeholder') %>
+            <%= f.submit t("comment_button") %>
+          <% end %>
+          <div id="comment_section">
+          <% @comments.each do |comment| %>
+            <div class="box comment-panel">
+              <%= render 'comments/comment', comment: comment %>
+            </div>
+          <% end %>
+          </div>
+        </div>
+      <% else %>
+        <p class="center">
+          You need to <%= link_to "Sign In", new_user_session_path %> to comment on a post!
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>

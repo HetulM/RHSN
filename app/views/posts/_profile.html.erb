@@ -1,0 +1,83 @@
+<%# The partial for the "profile" section. %>
+
+<div class="flex-container">
+  <div class="box-1">
+    <p class="block rounded-corner-1"><%= t ".title" %></p>
+    <div class="block flex">
+      <%# Displays the avatar which is associated with a user. %>
+      <%= avatar_for(current_user, size: 80) %>
+      <p class="name">
+        <%# Displays the users name and username %>
+        <strong><%= current_user.name %></strong> |
+        <small>@<%= current_user.username %></small> <br>
+        <%# Displays "Admin" text if the user is an admin user. %>
+        <% if current_user && current_user.admin %>
+          <strong class="admin-text">(Admin)</strong>
+        <% end %>
+      </p>
+    </div>
+    <div class="box-2">
+      <div class="block flex center-text">
+        <div class="items">
+          <div class="column-1">
+            <p><%= t ".posts" %></p>
+             <%# Displays the number of posts which the user has associated with their account. %>
+            <h3 class="strong-text"><%= current_user.posts.count %></h3>
+          </div>
+        </div>
+        <div class="items">
+          <div class="column-2">
+            <p><%= t ".following" %></p>
+            <%# Displays the number of friends which the user has associated with their account. %>
+            <h3 class="strong-text"><%= current_user.friendships.count %></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="box-3">
+      <%# Button which links to the messages page where you can create conversations with users %>
+      <%= link_to edit_user_registration_path, class: 'links' do %>
+        <div class="block flex">
+          <p>
+            <i class="fas fa-cog icon-edit-profile"></i>
+            <%= t('.edit_profile') %>
+        </div>
+      <% end %>
+    </div>
+    <div class="box-4">
+      <%# Button which links to the messages page where you can create conversations with users %>
+      <%= link_to chat_path, class: 'links' do %>
+        <div class="block flex">
+          <p>
+            <i class="fas fa-comment-dots icon-chat"></i>
+            <%= t('.messages') %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+    <div class="box-5">
+      <%# Button which links to the marketplace page %>
+      <%= link_to categories_path, class: 'links' do %>
+        <div class="block flex">
+          <p>
+            <i class="fas fa-store icon-marketplace"></i>
+            <%= t('.marketplace') %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+    <div class="box-6">
+      <%# Button which links to the friendships page %>
+      <%= link_to friendships_path, class: 'links' do %>
+        <div class="block flex rounded-corner">
+          <p>
+            <i class="fas fa-users icon-friendships"></i>
+            <%= t('.friendships') %> (<%= current_user.friendships.count %>)
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+

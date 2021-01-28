@@ -1,0 +1,78 @@
+---
+es:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            current_password:
+              invalid: ¡La contraseña no es válida!
+              blank: ¡El campo no puede dejarse en blanco!
+  devise:
+    sessions:
+      new:
+        title: Iniciar Sesión...
+        email_placeholder: Introduce tu correo electrónico
+        password_placeholder: Ingresa tu contraseña
+  didn't_recieve_confirmation_instructions: "¿No recibió las instrucciones de desbloqueo?"
+  email: Dirección De Correo Electrónico
+  forgot_password: "¿Olvidaste Tu Contraseña?"
+  friendships:
+    index:
+      add_friend: __Seguir__
+      following_title: Siguiendo
+      follows_you_title: Te Sigue
+      all_users_title: Todas Las Usuarias
+  login: Iniciar Sesión
+  logout: Cerrar Sesión
+  name: Nombre
+  password: Contraseña
+  password_confirmation: Confirmación De Contraseña
+  placeholder: Crea una nueva publicación...
+  posts:
+    people-you-may-know:
+      add_friend: __Seguir__
+      title: Gente que pueda conocer
+    profile:
+      edit_profile: Editar Perfil
+      followers: Seguidores
+      following: Siguiendo
+      marketplace: Mercado
+      messages: Mensajes
+      friendships: Amigos
+      posts: Publicaciones
+      title: Perfil
+    feed:
+      show_thread: Mostrar Hilo
+    edit: 
+      edit_post_title: Editar Publicaciones
+      show_link: Mostrar
+      back_link: Atrás
+  rooms:
+    show: 
+      chat_room_title: Sala De Chat
+      top_bar_heading: General
+      message_form_placeholder: Escribe-tu-mensaje-aquí...
+  remember_me: Recuérdame
+  sign_in: Registrarse
+  sign_up: Regístrate
+  confirm_sign_up: Confirmar Registrarse
+  greeting: Hola
+  greeting_two: Qué Esta Pasando
+  update: 👇 ¿Un Error? Jaja... No Te Preocupes, Sucede! 👇
+  form_update: Actualizar Publicación
+  username: Nombre De Usuario
+  comment: Comentario
+  like: Reacciones
+  unike: Eliminar Me gusta
+  form_submit: Crear Publicación
+  category: Categorias
+  edit: Editar
+  back: De Vuelta
+  comment_placeholder: Escribe un comentario...
+  comment_button: Comentario
+  delete: Eliminar
+  delete_confirmation: Estas seguro?
+  edit: Editar
+  avatar: Subir Avatar
+  admin_link: Panel de administrador

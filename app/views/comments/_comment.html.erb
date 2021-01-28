@@ -1,0 +1,16 @@
+<%# The partial for the comments which are displayed on posts. 
+    This partial is rendered within the posts show page. %>
+
+<%# Formatting the layout of how a comment is displayed after it has been added to a post. %>
+<div id="comment-<%= comment.id %>">
+  <p class="date-time"><%= comment.created_at.strftime("Created on %d/%m/%Y at %I:%M %p") %></p>
+  <p class="comment-body">
+    <%= comment.user.try(:name) %>:
+    <% if current_user  && current_user == comment.user || current_user.admin %>
+      <%= link_to "Delete", post_comment_path(@post, comment), 
+        method: :delete, remote: true, class: "delete-link" %>
+    <% end %>
+    <%= comment.body %>
+  </p>
+  <br>
+</div>

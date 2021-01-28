@@ -1,0 +1,51 @@
+<%# The view for the products index page. %>
+
+<%# This appends to the title of the page. %>
+<% content_for :title, " - Products " + "(" + @category.title + ")" %>
+
+<div class="container-wrap">
+  <h2>
+    <%= link_to t("category"), categories_path %> /
+    <%= @category.title %> /
+    Products
+  </h2>
+  <div class="products">
+    <%# Loops through each of the products and displays the products on the page. %>
+    <% @products.each do |product| %>
+      <div class="product-card">
+        <div class="card-head">
+          <%= image_tag "logo.svg", class: "card-logo" %>
+          <div class="product-detail">
+            <span class="back-text">
+              Buy
+            </span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="product-description">
+            <span class="product-title">
+              <%= product.title %>
+            </span>
+            <span class="product-caption">
+              <%= @category.title %>
+            </span>
+            <span class="product-description">
+              <%= product.description %>
+            </span>
+          </div>
+          <div class="product-properties">
+            <%= form_tag order_items_path, class: "product-price" do %>
+              <%= hidden_field_tag :product_id, product.id %>
+              <%# Adds a button to add the item to cart. %>
+              <%= button_tag(type: "submit", class: "add-to-basket-button") do %>
+                <%= price(product.price) %>
+                <i class="fas fa-shopping-cart"></i>
+              <% end %>
+            <% end %>
+            </span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

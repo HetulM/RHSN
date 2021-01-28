@@ -1,0 +1,68 @@
+<%# The partial for the posts feed. %>
+
+<%# This section checks if a user has signed in and if they have it renders the form to create a new post. %>
+<div class="column is-half">
+  <% if user_signed_in? %>
+    <article class="media">
+      
+      <%# This displays the form to create a new post %>
+      <div class="media-content">
+        <div class="content">
+        <%= render 'posts/form' %>
+        </div>
+      </div>
+    </article>
+  <% end %>
+
+  <h1 class="posts-title">Posts</h1>
+  
+  <%# This section determines how the posts will look when they are displayed on the feed. %>
+  <% @posts.each do | post | %>
+
+    <div class="columns is-mobile is-centered">
+      <div class="post-container is-centered">
+        <span class="post-date right"><%= post.created_at.strftime("%B %-d %Y, %H:%M") %></span>
+        
+        <%# Displays the user avatar. %>
+        <div class="columns is-vcentered">
+          <div class="column is-2 avatar-post">
+            <%= avatar_for(post.user, size: 60)  %>
+          </div>
+          
+          <%# Displays the content of the post %>
+          <div class="column post-content">
+            <strong><%= post.user.try(:name) %></strong><br />
+            <small>@<%= post.user.try(:username) %></small>
+            <p><%= post.post %></p>
+          </div>
+        </div>
+
+        <%# Displays the number of comments and likes on posts. %>
+        <%= pluralize(post.comments.count, t("comment")) %> | <%= pluralize(post.likes.count, t("like")) %> | 
+        <%# Displays a link to show the thread of the post so the user can like and comment. %>
+        <%= link_to post_path(post) do %>
+          <% t ".show_thread" %>
+        <% end %>
+
+        <%# If the user signed in created the post or is an admin user, they are able to delete the post. %>
+        <% if user_signed_in? && current_user.id == post.user_id || current_user && current_user.admin %>
+          <div class="right">
+            <%= link_to post, method: :delete, data: { confirm: t("delete_confirmation") } do %>
+              <%= t("delete") %><p><span class="icon"><i class="fa fa-trash" aria-hidden="hidden"></i></span>
+            <% end %>
+          </div>
+        <% end %>
+        
+        <%# If the user is an admin user, a link to edit each post is displayed. %>
+        <% if current_user && current_user.admin %>
+          <div class="right">
+            <%= link_to edit_post_path(post) do %>
+              <%= t("edit") %><span class="icon"><i class="fa fa-pencil"></i></span>
+            <% end %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  <% end %>
+</div>

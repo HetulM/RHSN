@@ -1,0 +1,85 @@
+<%# The view for the order items index page. %>
+
+<%# This appends to the title of the page. %>
+<% content_for :title, " - Checkout" %>
+
+<%# This contains the contents of the shopping cart before you checkout. %>
+<div class="cart-container">
+  <div class="columns is-centered">
+    <%# Displays the items which have been added to the cart. %>
+    <div class="column is-two-thirds">
+      <div class="cart-products">
+        <h1>Shopping Cart</h1>
+        <div class="columns is-mobile cart-table">
+          <div class="column is-half table-heading">
+            <h2>Product Details</h2>
+          </div>
+          <div class="column table-heading center">
+            <h2>Remove</h2>
+          </div>
+          <div class="column table-heading center">
+            <h2>Price</h2>
+          </div>
+          <div class="column table-heading center">
+            <h2>Total</h2>
+          </div>
+        </div>
+        <%# Displays the contents of each item which has been added to the basket. %>
+        <% @items.each do |item| %>
+          <div class="columns is-mobile cart-row">
+            <div class="column is-half">
+              <h2><%= item.product.title %></h2>
+              <p><%= item.product.description %></p>
+            </div>
+            <div class="column center">
+              <h2><%= form_for item, method: :delete do |f| %>
+                <%= f.submit "Remove", class: "remove-button" %>
+              <% end %></h2>
+            </div>
+            <div class="column center">
+              <h2><%= price(item.price) %></h2>
+            </div>
+            <div class="column center">
+              <h2><%= price(current_cart.order_total) %></h2>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <h3>
+        <%= link_to "Continue Shopping", categories_path, class: "back-link" %>
+      </h3>
+    </div>
+    
+    <%# Displays the panel which allows you to confirm the purchase. %>
+    <div class="column">
+      <div class="total-price-box">
+        <h1>Order Summary</h1>
+        <hr>
+        <div class="columns text-row is-mobile">
+          <div class="column is-half">
+            <h2 class="left-text">Items <%= current_cart.count_items %></h2>
+          </div>
+          <div class="column">
+            <h2 class="right-text"><%= price(current_cart.order_total) %></h2>
+          </div>
+        </div>
+        <div class="delivery-info">
+          <h2>Standard Delivery - Free</h2>
+        </div>
+        <hr>
+        <div class="columns text-row is-mobile">
+          <div class="column is-half">
+            <h2 class="left-text total">Total Cost</h2>
+          </div>
+          <div class="column">
+            <h2 class="right-text"><%= price(current_cart.order_total) %></h2>
+          </div>
+        </div>
+        <span>
+          <%= button_to 'Checkout', checkout_create_path, method: :post, params: {id: current_cart.order_total}, remote: true, class: "checkout-button" %>
+        </span>
+      </div>
+    </div>
+
+  </div>
+</div>

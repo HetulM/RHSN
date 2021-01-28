@@ -1,0 +1,142 @@
+/* The scss file for the styling of the posts. 
+ * The colours partial has been imported from the modules folder so that the colour variables 
+ * can be used within this file. 
+*/
+@import "modules/colours";
+
+.posts-column {
+  padding: 100px;
+}
+
+.posts-title {
+  text-align: center;
+  font-weight: 700;
+  padding-bottom: 30px;
+}
+
+.post-btn {
+  width: auto;
+  height: 2rem;
+  border-radius: 5px;
+  padding: 8px;
+  border: 0;
+  background-color: $primary;
+  font-weight: bold;
+  font-size: 12px;
+  color: #fff;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 2rem;
+  }
+}
+
+.admin-text {
+  text-transform: uppercase;
+  color: $primary;
+}
+
+.right {
+  @media (min-width: 1200px) {
+    float: right;
+    padding-left: 10px;
+  }
+}
+
+// Styling the input form for a post
+.form {
+  width: 100%;
+  position: relative;
+  height: 60px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.form input[type="text"] {
+  font-size: 18px;
+}
+
+.form input {
+  width: 100%;
+  height: 100%;
+  color: #595f6e;
+  padding-top: 20px;
+  border: none;
+  outline: none;
+}
+
+.form label {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-bottom: 1px solid #000;
+}
+
+.form label::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: -1px;
+  width: 100%;
+  height: 100%;
+  border-bottom: 3px solid $primary;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.content-name {
+  position: absolute;
+  bottom: 5px;
+  left: 0px;
+  transition: all 0.3s ease;
+  font-weight: 700;
+}
+
+.form input:focus + .label-name .content-name,
+.form input:valid + .label-name .content-name {
+  transform: translateY(-150%);
+  font-size: 14px;
+  font-weight: 400;
+  color: $primary;
+}
+
+.form input:focus + .label-name::after,
+form input:valid + .label-name::after {
+  transform: translateX(0%);
+}
+
+.post-container {
+  width: 90%;
+  padding: 1.1rem;
+  margin-bottom: 2rem;
+  border-top: solid rgba(0, 0, 0, 0.03) 1px;
+  border-radius: 5px;
+  box-shadow: 0px 15px 15px -10px rgba(0, 0, 0, 0.4);
+}
+
+.post-content {
+  margin-bottom: 20px;
+}
+
+.post-date {
+  font-size: 12px;
+  text-decoration: underline;
+}
+
+.bold-text {
+  font-weight: 700;
+  text-align: center;
+}
+
+.block:not(:last-child) {
+  margin-bottom: 0px;
+}
+
+.last-rounded-corner {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}

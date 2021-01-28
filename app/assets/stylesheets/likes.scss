@@ -1,0 +1,23 @@
+/* The scss file for the styling of the like button on posts. 
+ * The colours partial has been imported from the modules folder so that the colour variables 
+ * can be used within this file. 
+*/
+@import "modules/colours";
+
+.likes-breakpoint {
+  padding: 0 6px 0 6px;
+}
+
+.unlike-icon {
+  color: $secondary;
+}
+
+.like-icon,
+.unlike-icon {
+  transition: all 0.2s ease-in-out;
+}
+
+.like-icon:hover,
+.unlike-icon:hover {
+  transform: scale(1.06);
+}

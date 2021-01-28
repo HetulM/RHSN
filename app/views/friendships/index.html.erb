@@ -1,0 +1,82 @@
+<%# The view for the friendships index page. %>
+
+<%# This appends to the title of the page. %>
+<% content_for :title, " - Friends" %>
+
+<h1 class="friends-titles"><%= t(".following_title") %></h1>
+
+<div class="friendships-container">
+  <%# Lists the friendships which exist for the current user. %>
+  <section class="current-friends">
+    <% @users.each do |user| %>
+      <% if user.id == current_user.id %>
+        <% for friendship in user.friendships %>
+          <div class="friend-card">
+
+            <div class="friend-avatar">
+              <%= avatar_for(friendship.friend, size: 80)  %>
+            </div>
+
+            <div class="friend-name">
+              <h3><%= friendship.friend.try(:name) %></h3>
+              <p>@<%= friendship.friend.try(:username) %></p>
+              <p><%= link_to "remove", friendship, :method => :delete %></p>
+            </div>
+
+            <div class="already-friends right">
+              <h3><i class="fas fa-user-friends"></i>Friends</h3>
+            </div>
+
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </section>
+
+  <h1 class="friends-titles"><%= t(".follows_you_title") %></h1>
+
+  <%# Lists the people who follow the current user. %>
+  <section class="friended-by">
+    <% @users.each do |user| %>
+      <% if user.id == current_user.id %>
+        <% for user in user.inverse_friends %>
+          <div class="friend-card">
+
+            <div class="friend-avatar">
+              <%= avatar_for(user, size: 80)  %>
+            </div>
+
+            <div class="friend-name">
+              <h3><%= user.try(:name) %></h3>
+              <p>@<%= user.try(:username) %></p>
+                <%= string_with_link(t('.add_friend'), friendships_path(:friend_id => user), :method => :post) %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </section>
+
+    <h1 class="friends-titles"><%= t(".all_users_title") %></h1>
+
+  <%# Lists all of the users who are signed up. %>
+  <section class="all-users">
+    <% @users.each do |user| %>
+      <% if user.id != current_user.id %>
+        <div class="friend-card">
+
+          <div class="friend-avatar">
+            <%= avatar_for(user, size: 80)  %>
+          </div>
+
+          <div class="friend-name">
+            <h3><%= user.try(:name) %></h3>
+            <p>@<%= user.try(:username) %></p>
+            <%= string_with_link(t('.add_friend'), friendships_path(:friend_id => user), :method => :post) %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </section>
+  
+</div>

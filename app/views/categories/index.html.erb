@@ -1,0 +1,20 @@
+<%# The view for the categories index page. %>
+
+<%# This appends to the title of the page. %>
+<% content_for :title, " - Marketplace Categories" %>
+
+<h2 class="categories-title">
+  <%= t('category') %>
+</h2>
+
+<ol>
+  <%# Loops through the categories and displays them as an ordered list. %>
+  <% @categories.each do |category| %>
+  <li class="center">
+    <%= link_to category_products_path(category) do %> <%= category.title %>
+    (<%= pluralize(category.products_count, "product") %>)
+    <hr />
+    <% end %>
+  </li>
+  <% end %>
+</ol>

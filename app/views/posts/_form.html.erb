@@ -1,0 +1,11 @@
+<%# The partial for the posts form. %>
+
+<%# Creates a form which the user can use to create a post. %>
+<%= form_for @post do |f| %>
+  <div class="form">
+    <%= f.text_field :post, autocomplete: "off", autofocus: true, required: true %>
+    <%= f.label :name, class: "label-name" do %>
+      <span class="content-name"><%= t("greeting") + " " + current_user.try(:name).to_s.html_safe + ", " + t("greeting_two") %></span>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,41 @@
+<%# The view for the edit form which allows the user to edit their password. %>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-4">
+
+        <h1 class="title is-3">Change your password</h1>
+
+        <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+          <%= f.error_notification %>
+
+          <%= f.input :reset_password_token, as: :hidden %>
+          <%= f.full_error :reset_password_token %>
+
+           <%# Label to enter a new password %>
+          <div class="field">
+            <div class="control">
+            <%= f.input :password, label: "New password", required: true, autofocus: true, input_html: { class: "input"}, wrapper: false, label_html: { class: "label" }, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+            </div>
+          </div>
+
+          <%# Label to confirm your password %>
+          <div class="field">
+            <div class="control">
+            <%= f.input :password_confirmation, label: "Confirm your new password", input_html: { class: "input"}, wrapper: false, label_html: { class: "label" }, required: true %>
+            </div>
+          </div>
+
+          <%# Button to change your password %>
+          <div class="form-actions">
+            <%= f.button :submit, "Change my password", class: "post-btn" %>
+          </div>
+        <% end %>
+
+        <%= render "devise/shared/links" %>
+
+      </div>
+    </div>
+  </div>
+</section>

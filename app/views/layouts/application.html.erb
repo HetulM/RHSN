@@ -1,0 +1,92 @@
+<%# The view for the application landing page. %>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rhsn<%= yield(:title) %></title>
+    <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- A link to all of the stylesheets which have been used -->
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://js.stripe.com/v3/"></script>
+    <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%# Display the notice at the top of the page. %>
+    <% if notice %>
+      <div id="notice_wrapper">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% elsif alert %>
+     <div id="notice_wrapper">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
+
+    <header class="navigation-bar">
+      <%# The navigation bar for the website. %>
+      <%= link_to root_path do %>
+        <%= image_tag "logo.svg", class: "logo" %>
+      <% end %>
+
+      <nav>
+        <%# If the user is signed in, show the links to logout or edit their account, else show 
+            links to sign-in or sign-up. %>
+        <% if user_signed_in? %>
+          <ul class="nav-links">
+            <%# If the current user is signed in and is an admin user, show a link to the admin panel. %>
+            <% if current_user.admin %>
+              <li><%= link_to t('admin_link'), rails_admin_path, class: "admin-link" %></li>
+            <% end %>
+            <li><%= link_to current_user.name.html_safe, edit_user_registration_path %></li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <%= t('logout') %><i class="fas fa-sign-out-alt logout"></i>
+              <% end %>
+            </li>
+          </ul>
+          <% else %>
+          <ul class="nav-links">
+            <li><%= link_to t('sign_in'), new_user_session_path %></li>
+            <li><%= link_to t('sign_up'), new_user_registration_path %></li>
+          </ul>
+        <% end %>
+        <div class="menu-wrap">
+          <%# Contains the code for the mobile view navigation bar. %>
+          <input type="checkbox" class="toggler">
+          <div class="hamburger">
+            <div></div>
+          </div>
+          <div class="menu">
+            <div>
+              <div>
+                <ul>
+                  <% if user_signed_in? %>
+                    <li><%= link_to current_user.name.html_safe, edit_user_registration_path %></li>
+                    <li><%= link_to t('logout'), destroy_user_session_path, method: :delete %><i class="fas fa-sign-out-alt"></i></li>
+                  <% else %>
+                    <li><%= link_to 'Sign In', new_user_session_path %></li>
+                    <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <%= yield %>
+
+    <footer>
+      <p>Lanuage:</p>
+      <%= link_to_unless_current 'English', locale: "en" %> |
+      <%= link_to_unless_current 'Spanish', locale: "es" %>
+    </footer>
+
+  </body>
+</html>

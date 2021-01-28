@@ -1,0 +1,9 @@
+<%# This contains the information for a Stripe session. %>
+
+var stripe = Stripe('pk_test_0EpfUsABzJ23tfoJgKOBBuXb00ZFYwKmGJ');
+
+stripe.redirectToCheckout({
+  sessionId: '<%= @session.id %>'
+  }).then (function (result) {
+    console.log(result.error.message);
+  });

@@ -1,0 +1,6 @@
+# Contains the fixtures for comments.
+
+comment_one:
+  body: test
+  id: 1
+  post_id: 1

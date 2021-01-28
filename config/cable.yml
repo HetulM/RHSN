@@ -1,0 +1,10 @@
+development:
+  adapter: async
+
+test:
+  adapter: async
+
+production:
+  adapter: redis
+  url: redis://:lFxyTUl7ciLTeijqWbK804hjBjs0wJyw@redis-12588.c9.us-east-1-4.ec2.cloud.redislabs.com:12588
+  channel_prefix: rhsn_production
