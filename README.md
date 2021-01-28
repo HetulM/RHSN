@@ -23,12 +23,7 @@ Upon completion of this, you can follow these simple steps to launch my website.
 
 1. Visit https://rhsn.herokuapp.com/
 
-2. To sign in as an admin user, an account has been created for you which is set to an admin user. 
-    The details are: 
-    Username: example123@example.com
-    Password: T3stAdmin123
-
-3. To sign in as a regular user, a different account has been created. 
+2. Create an account or use the account created for testing below:  
     The details are: 
     Username: test@example.com
     Password: T3stPassword123
