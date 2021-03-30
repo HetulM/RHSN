@@ -24,7 +24,7 @@ Upon completion of this, you can follow these simple steps to launch my website.
 1. Visit https://rhsn.herokuapp.com/
 
 2. Create an account or use the account created for testing below:  
-    The details are: 
-    Username: test@example.com
+    The details are: <br>
+    Username: test@example.com <br>
     Password: T3stPassword123
 
